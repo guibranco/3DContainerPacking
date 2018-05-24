@@ -26,11 +26,11 @@ namespace CromulentBisgetti.ContainerPacking.Algorithms
 			ExecuteIterations(container);
 			Report(container);
 
-			AlgorithmPackingResult result = new AlgorithmPackingResult();
-			result.AlgorithmID = (int)AlgorithmType.EB_AFIT;
+			var result = new AlgorithmPackingResult();
+			result.AlgorithmID = (Int32)AlgorithmType.EB_AFIT;
 			result.AlgorithmName = "EB-AFIT";
 
-			for (int i = 1; i <= itemsToPackCount; i++)
+			for (var i = 1; i <= itemsToPackCount; i++)
 			{
 				itemsToPack[i].Quantity = 1;
 
@@ -65,53 +65,53 @@ namespace CromulentBisgetti.ContainerPacking.Algorithms
 		private ScrapPad smallestZ;
 		private ScrapPad trash;
 
-		private bool evened;
-		private bool hundredPercentPacked = false;
-		private bool layerDone;
-		private bool packing;
-		private bool packingBest = false;
-		private bool quit = false;
+		private Boolean evened;
+		private Boolean hundredPercentPacked = false;
+		private Boolean layerDone;
+		private Boolean packing;
+		private Boolean packingBest = false;
+		private Boolean quit = false;
 
-		private int bboxi;
-		private int bestIteration;
-		private int bestVariant;
-		private int boxi;
-		private int cboxi;
-		private int layerListLen;
-		private int packedItemCount;
-		private int x;
+		private Int32 bboxi;
+		private Int32 bestIteration;
+		private Int32 bestVariant;
+		private Int32 boxi;
+		private Int32 cboxi;
+		private Int32 layerListLen;
+		private Int32 packedItemCount;
+		private Int32 x;
 
-		private decimal bbfx;
-		private decimal bbfy;
-		private decimal bbfz;
-		private decimal bboxx;
-		private decimal bboxy;
-		private decimal bboxz;
-		private decimal bfx;
-		private decimal bfy;
-		private decimal bfz;
-		private decimal boxx;
-		private decimal boxy;
-		private decimal boxz;
-		private decimal cboxx;
-		private decimal cboxy;
-		private decimal cboxz;
-		private decimal layerinlayer;
-		private decimal layerThickness;
-		private decimal lilz;
-		private decimal packedVolume;
-		private decimal packedy;
-		private decimal prelayer;
-		private decimal prepackedy;
-		private decimal preremainpy;
-		private decimal px;
-		private decimal py;
-		private decimal pz;
-		private decimal remainpy;
-		private decimal remainpz;
-		private decimal itemsToPackCount;
-		private decimal totalItemVolume;
-		private decimal totalContainerVolume;
+		private Decimal bbfx;
+		private Decimal bbfy;
+		private Decimal bbfz;
+		private Decimal bboxx;
+		private Decimal bboxy;
+		private Decimal bboxz;
+		private Decimal bfx;
+		private Decimal bfy;
+		private Decimal bfz;
+		private Decimal boxx;
+		private Decimal boxy;
+		private Decimal boxz;
+		private Decimal cboxx;
+		private Decimal cboxy;
+		private Decimal cboxz;
+		private Decimal layerinlayer;
+		private Decimal layerThickness;
+		private Decimal lilz;
+		private Decimal packedVolume;
+		private Decimal packedy;
+		private Decimal prelayer;
+		private Decimal prepackedy;
+		private Decimal preremainpy;
+		private Decimal px;
+		private Decimal py;
+		private Decimal pz;
+		private Decimal remainpy;
+		private Decimal remainpz;
+		private Decimal itemsToPackCount;
+		private Decimal totalItemVolume;
+		private Decimal totalContainerVolume;
 
 		#endregion Private Variables
 
@@ -120,7 +120,7 @@ namespace CromulentBisgetti.ContainerPacking.Algorithms
 		/// <summary>
 		/// Analyzes each unpacked box to find the best fitting one to the empty space given.
 		/// </summary>
-		private void AnalyzeBox(decimal hmx, decimal hy, decimal hmy, decimal hz, decimal hmz, decimal dim1, decimal dim2, decimal dim3)
+		private void AnalyzeBox(Decimal hmx, Decimal hy, Decimal hmy, Decimal hz, Decimal hmz, Decimal dim1, Decimal dim2, Decimal dim3)
 		{
 			if (dim1 <= hmx && dim2 <= hmy && dim3 <= hmz)
 			{
@@ -284,11 +284,11 @@ namespace CromulentBisgetti.ContainerPacking.Algorithms
 		/// </summary>
 		private void ExecuteIterations(Container container)
 		{
-			int itelayer;
-			int layersIndex;
-			decimal bestVolume = 0.0M;
+            Int32 itelayer;
+            Int32 layersIndex;
+			var bestVolume = 0.0M;
 
-			for (int containerOrientationVariant = 1; (containerOrientationVariant <= 6) && !quit; containerOrientationVariant++)
+			for (var containerOrientationVariant = 1; (containerOrientationVariant <= 6) && !quit; containerOrientationVariant++)
 			{
 				switch (containerOrientationVariant)
 				{
@@ -389,9 +389,9 @@ namespace CromulentBisgetti.ContainerPacking.Algorithms
 		/// Finds the most proper boxes by looking at all six possible orientations,
 		/// empty space given, adjacent boxes, and pallet limits.
 		/// </summary>
-		private void FindBox(decimal hmx, decimal hy, decimal hmy, decimal hz, decimal hmz)
+		private void FindBox(Decimal hmx, Decimal hy, Decimal hmy, Decimal hz, Decimal hmz)
 		{
-			int y;
+            Int32 y;
 			bfx = 32767;
 			bfy = 32767;
 			bfz = 32767;
@@ -427,16 +427,16 @@ namespace CromulentBisgetti.ContainerPacking.Algorithms
 		/// <summary>
 		/// Finds the most proper layer height by looking at the unpacked boxes and the remaining empty space available.
 		/// </summary>
-		private void FindLayer(decimal thickness)
+		private void FindLayer(Decimal thickness)
 		{
-			decimal exdim = 0;
-			decimal dimdif;
-			decimal dimen2 = 0;
-			decimal dimen3 = 0;
-			int y;
-			int z;
-			decimal layereval;
-			decimal eval;
+            Decimal exdim = 0;
+            Decimal dimdif;
+            Decimal dimen2 = 0;
+            Decimal dimen3 = 0;
+            Int32 y;
+            Int32 z;
+            Decimal layereval;
+            Decimal eval;
 			layerThickness = 0;
 			eval = 1000000;
 
@@ -508,7 +508,7 @@ namespace CromulentBisgetti.ContainerPacking.Algorithms
 		/// </summary>
 		private void FindSmallestZ()
 		{
-			ScrapPad scrapmemb = scrapfirst;
+			var scrapmemb = scrapfirst;
 			smallestZ = scrapmemb;
 
 			while (scrapmemb.Post != null)
@@ -538,11 +538,11 @@ namespace CromulentBisgetti.ContainerPacking.Algorithms
 			layers = new List<Layer>();
 			itemsToPackCount = 0;
 
-			foreach (Item item in items)
+			foreach (var item in items)
 			{
-				for (int i = 1; i <= item.Quantity; i++)
+				for (var i = 1; i <= item.Quantity; i++)
 				{
-					Item newItem = new Item(item.ID, item.Dim1, item.Dim2, item.Dim3, item.Quantity);
+					var newItem = new Item(item.ID, item.Dim1, item.Dim2, item.Dim3, item.Quantity);
 					itemsToPack.Add(newItem);
 				}
 
@@ -573,15 +573,15 @@ namespace CromulentBisgetti.ContainerPacking.Algorithms
 		/// </summary>
 		private void ListCanditLayers()
 		{
-			bool same;
-			decimal exdim = 0;
-			decimal dimdif;
-			decimal dimen2 = 0;
-			decimal dimen3 = 0;
-			int y;
-			int z;
-			int k;
-			decimal layereval;
+            Boolean same;
+            Decimal exdim = 0;
+            Decimal dimdif;
+            Decimal dimen2 = 0;
+            Decimal dimen3 = 0;
+            Int32 y;
+            Int32 z;
+            Int32 k;
+            Decimal layereval;
 
 			layerListLen = 0;
 
@@ -660,9 +660,9 @@ namespace CromulentBisgetti.ContainerPacking.Algorithms
 		/// </summary>
 		private void OutputBoxList()
 		{
-			decimal packCoordX = 0;
-			decimal packCoordY = 0;
-			decimal packCoordZ = 0;
+            Decimal packCoordX = 0;
+            Decimal packCoordY = 0;
+            Decimal packCoordZ = 0;
 			dynamic packDimX = 0;
 			dynamic packDimY = 0;
 			dynamic packDimZ = 0;
@@ -739,9 +739,9 @@ namespace CromulentBisgetti.ContainerPacking.Algorithms
 		/// </summary>
 		private void PackLayer()
 		{
-			decimal lenx;
-			decimal lenz;
-			decimal lpz;
+            Decimal lenx;
+            Decimal lenz;
+            Decimal lpz;
 
 			if (layerThickness == 0)
 			{
@@ -1162,7 +1162,7 @@ namespace CromulentBisgetti.ContainerPacking.Algorithms
 			/// <value>
 			/// The layer dimension value.
 			/// </value>
-			public decimal LayerDim { get; set; }
+			public Decimal LayerDim { get; set; }
 
 			/// <summary>
 			/// Gets or sets the layer eval value, representing an evaluation weight
@@ -1171,7 +1171,7 @@ namespace CromulentBisgetti.ContainerPacking.Algorithms
 			/// <value>
 			/// The layer eval value.
 			/// </value>
-			public decimal LayerEval { get; set; }
+			public Decimal LayerEval { get; set; }
 		}
 
 		/// <summary>
@@ -1190,7 +1190,7 @@ namespace CromulentBisgetti.ContainerPacking.Algorithms
 			/// <value>
 			/// The x coordinate of the gap's right corner.
 			/// </value>
-			public decimal CumX { get; set; }
+			public Decimal CumX { get; set; }
 
 			/// <summary>
 			/// Gets or sets the z coordinate of the gap's right corner.
@@ -1198,7 +1198,7 @@ namespace CromulentBisgetti.ContainerPacking.Algorithms
 			/// <value>
 			/// The z coordinate of the gap's right corner.
 			/// </value>
-			public decimal CumZ { get; set; }
+			public Decimal CumZ { get; set; }
 
 			/// <summary>
 			/// Gets or sets the following entry.

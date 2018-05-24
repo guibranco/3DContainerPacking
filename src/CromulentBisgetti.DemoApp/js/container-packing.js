@@ -192,7 +192,7 @@ var ViewModel = function () {
 				// Tie this response back to the correct containers.
 				response.forEach(containerPackingResult => {
 					self.Containers().forEach(container => {
-						if (container.ID() == containerPackingResult.ContainerID) {
+						if (container.ID() === containerPackingResult.ContainerID) {
 							container.AlgorithmPackingResults(containerPackingResult.AlgorithmPackingResults);
 						}
 					});
@@ -206,7 +206,7 @@ var ViewModel = function () {
 		scene.remove( selectedObject );
 		
 		for (var i = 0; i < 1000; i++) {
-			var selectedObject = scene.getObjectByName('cube' + i);
+			selectedObject = scene.getObjectByName('cube' + i);
 			scene.remove(selectedObject);
 		}
 		
